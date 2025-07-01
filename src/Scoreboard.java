@@ -35,7 +35,7 @@ public class Scoreboard {
     }
 
     public void registerPlayer(String playerName) {
-        if (!players.contains(playerName)) {
+        if (!checkPlayer(playerName)) {
             Player newPlayer = new Player(playerName);
             players.put(playerName, newPlayer);
         }

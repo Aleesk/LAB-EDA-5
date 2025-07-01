@@ -31,7 +31,12 @@ public class Main {
                     String ganador = partida.play();
                     boolean empate = partida.getStatus().equals("DRAW");
 
-                    scoreboard.addGameResult(playerA, playerB, empate);
+                    if (empate) {
+                        scoreboard.addGameResult(playerA, playerB, true);
+                    } else {
+                        String perdedor = ganador.equals(playerA) ? playerB : playerA;
+                        scoreboard.addGameResult(ganador, perdedor, false);
+                    }
 
                     // Mostrar resultado
                     System.out.println("\n--- Resultado ---");
