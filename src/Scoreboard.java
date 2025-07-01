@@ -3,12 +3,12 @@ import java.util.List;
 
 public class Scoreboard {
     private final BST<Integer, String> winTree;
-    private final HashST<String, Player> playerTree;
+    private final HashST<String, Player> players;
     private int playedGames;
 
     public Scoreboard() {
         winTree = new BST<>();
-        playerTree = new HashST<>();
+        players = new HashST<>();
         playedGames = 0;
     }
 
@@ -19,8 +19,8 @@ public class Scoreboard {
         registerPlayer(winnerPlayerName);
         registerPlayer(loserPlayerName);
 
-        Player winner = playerTree.get(winnerPlayerName);
-        Player loser = playerTree.get(loserPlayerName);
+        Player winner = players.get(winnerPlayerName);
+        Player loser = players.get(loserPlayerName);
 
         if (draw) {
             winner.addDraw();
@@ -35,14 +35,14 @@ public class Scoreboard {
     }
 
     public void registerPlayer(String playerName) {
-        if (!playerTree.contains(playerName)) {
+        if (!players.contains(playerName)) {
             Player newPlayer = new Player(playerName);
-            playerTree.put(playerName, newPlayer);
+            players.put(playerName, newPlayer);
         }
     }
 
     public boolean checkPlayer(String playerName) {
-        return playerTree.contains(playerName);
+        return players.contains(playerName);
     }
 
     public Player[] winRange(int lo, int hi) {
@@ -50,7 +50,7 @@ public class Scoreboard {
         List<Player> result = new ArrayList<>();
 
         for (String name : names) {
-            Player player = playerTree.get(name);
+            Player player = players.get(name);
             if (player != null) result.add(player);
         }
 
@@ -61,7 +61,7 @@ public class Scoreboard {
         List<String> names = winTree.successor(wins);
         List<Player> result = new ArrayList<>();
         for (String name : names) {
-            Player player = playerTree.get(name);
+            Player player = players.get(name);
             if (player != null) result.add(player);
         }
         return result.toArray(new Player[0]);
@@ -72,11 +72,11 @@ public class Scoreboard {
     }
 
     public Player getPlayer(String name) {
-        return playerTree.get(name);
+        return players.get(name);
     }
 
     public HashST<String, Player> players() {
-        return playerTree;
+        return players;
     }
 
     public void print(Player player) {

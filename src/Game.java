@@ -35,7 +35,7 @@ public class Game {
                 continue;
             }
 
-            char result = board.checkWinner();
+            char result = board.isGameOver();
             if (result == 'X') {
                 status = "VICTORY";
                 winnerPlayerName = playerNameA;

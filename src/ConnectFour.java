@@ -1,19 +1,13 @@
-import java.util.Arrays;
-
 public class ConnectFour {
     private final char[][] grid;
     private char currentSymbol;
 
     public ConnectFour() {
         grid = new char[6][7]; // filas x columnas
-        for(int i=0; i<6; i++){
-
-            for(int j=0; j<7; j++){
-
+        for(int i=0; i<6; i++)
+            for (int j = 0; j < 7; j++) {
                 this.grid[i][j] = ' ';
             }
-        }
-
         this.currentSymbol = 'X';
     }
 
@@ -30,8 +24,7 @@ public class ConnectFour {
         return false; // columna llena
     }
 
-    public char checkWinner() {
-        // Recorremos todo el tablero
+    public char isGameOver() {
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 7; col++) {
                 char symbol = grid[row][col];
@@ -75,7 +68,7 @@ public class ConnectFour {
                 break;
             }
         }
-        return full ? 'D' : 'N'; // D: draw, N: not over
+        return full ? 'D' : 'N'; // D: draw, N: No terminado
     }
 
     public void printBoard() {
